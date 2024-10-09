@@ -21,7 +21,6 @@ const RoomTypeToEmoji = {
 
 // render opts
 const drawIcon = true;
-const drawIndexNumber = false;
 
 /**
  * @param {HTMLCanvasElement} canvas
@@ -29,6 +28,7 @@ const drawIndexNumber = false;
 export function Start(canvas) {
   /** @type {import("./dungeon.js").FloorPlan} */
   let dungeon;
+  let drawIndexNumber = false;
 
   canvas.width = canvas.height = cellSize * Y_UNIT;
   const ctx = canvas.getContext("2d");
@@ -70,10 +70,29 @@ export function Start(canvas) {
 
   // DOMセットアップ
   const panel = document.getElementById("control-panel");
-  const btn = document.createElement("button");
-  btn.innerText = "再生成";
-  btn.addEventListener("click", reset);
-  panel.append(btn);
+  {
+    const btn = document.createElement("button");
+    btn.innerText = "再生成";
+    btn.addEventListener("click", reset);
+    panel.append(btn);
+  }
+  {
+    const _id = "indexdrawbtn";
+    const container = document.createElement("span");
+    const btn = document.createElement("input");
+    const label = document.createElement("label");
+    label.innerText = "インデックス値を表示";
+    btn.id = label.htmlFor = _id;
+    btn.checked = drawIndexNumber;
+    btn.type = "checkbox";
+    btn.addEventListener("click", () => {
+      drawIndexNumber = !drawIndexNumber;
+      btn.checked = drawIndexNumber;
+      render();
+    });
+    container.append(btn, label);
+    panel.append(container);
+  }
 
   // init
   reset();
