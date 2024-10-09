@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isacc dungeon creator</title>
+    <style type="text/css">
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="screen"></canvas>
+    <div id="control-panel"></div>
+    <script defer type="module">
+      import { Start } from "./src/app.js";
+      const canvas = document.getElementById("screen");
+      Start(canvas);
+    </script>
+  </body>
+</html>

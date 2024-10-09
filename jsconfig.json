@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "checkJs": true,
+    "lib": [
+      "DOM",
+      "ES2023"
+    ],
+  },
+  "exclude": []
+}
